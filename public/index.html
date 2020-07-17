@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Realtime Chat Application</title>
+        <style type="text/css">
+        body,html{
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            border:1px solid black;
+            padding: 10px;
+            width:100%;
+            position: fixed;
+            top: 0;
+            height:calc(100% - 60px);
+            overflow-y: auto;
+        }
+        .mf{
+            border:1px solid black;
+            display: inline;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .their_message{
+            text-align: left;
+            background-color: darkmagenta;
+            margin-right: auto;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            color: white;
+            padding: 5px;
+            border: none;
+            margin-left: 5px;
+            width: fit-content;
+            max-width: 50%;
+            border-radius: 10px;
+        }
+        .my_message{
+            text-align: right;
+            padding: 5px;
+            margin-right: 10px;
+            border:none;
+            max-width: 50%;
+            margin-top:5px ;
+            margin-bottom: 5px;
+            background-color: lightcoral;
+            margin-left: auto;
+            width: fit-content;
+            border-radius: 10px;
+        }
+        .fill{
+            width: calc(100% - 200px);
+        }
+        .btn{
+            width: 100px;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="container" id="messagesi">
+            <!--<div class="their_message">
+                <p class="head">lorem ipsum</p>
+                <p class="body">hii bro what do you do</p>
+            </div>
+            <div class="my_message">
+                <p class="head">lorem ipsum</p>
+                <p class="body">hii bro what do you do</p>
+            </div>-->
+        </div>
+        <form class="mf">
+            <input type="text" class="fill" id="m" required>
+            <button type="submit"  class="btn">Click me!</button>
+        </form>
+        <script src="/socket.io/socket.io.js"></script>
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript">
+        $(function () {
+            var socket = io();
+            $('form').submit(function(e) {
+              e.preventDefault(); // prevents page reloading
+              socket.emit('message', $('#m').val());
+              $('#messagesi').append($('<div class="my_message">').text($('#m').val()));
+                $('#m').val('');
+              return false;
+            });
+            socket.on('message',function(msg){
+                $('#messagesi').append($('<div class="their_message">').text(msg));
+            });
+        });
+        </script>
+    </body>
+</html>

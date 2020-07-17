@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register User!</title>
+        <style type="text/css">
+        .regform{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            box-shadow: black 5px 5px 15px 8px;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        input{
+            margin: 5px;
+            padding: 10px;
+            border: none;
+            border-bottom: 1px solid grey;
+            transition: ease-in;
+            transition-duration: 1s;
+        }
+        input:hover{
+            border-bottom: 1px solid maroon;
+            color: maroon;
+        }
+        button{
+            border:none;
+            padding: 10px;
+            margin:10px;
+            background-color: maroon;
+            color: white;
+        }
+        button:hover{
+            color: maroon;
+            background-color: white;
+            border: 1px solid maroon;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="contenter">
+            <form class="regform" method="POST" action="/register">
+                <input name="uname" type="text" placeholder="Username" required><br>
+                <input name="uemail" type="email" placeholder="email" required><br>
+                <input name="upwd1" type="password" placeholder="Password" required><br>
+                <input name="upwd2" type="password" placeholder="Re type Password" required><br>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </body>
+</html>
